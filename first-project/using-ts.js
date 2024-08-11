@@ -1,9 +1,12 @@
-var button = document.querySelector("button");
-var input1 = document.getElementById("num1");
-var input2 = document.getElementById("num2");
-function add(num1, num2) {
-    return num1 + num2;
+var person = {
+    name: 'Maximilian',
+    age: 27,
+    hobbies: ['Running', 'Fashion']
+};
+var favoriteActivites;
+favoriteActivites = ['Sports'];
+console.log(person.name);
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
+    console.log(hobby);
 }
-button.addEventListener("click", function () {
-    console.log(add(input1.value, input2.value));
-});
