@@ -1,9 +1,15 @@
-function add(n1: number, n2: number): number {
-    return n1+n2;
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = 'Max';
+
+if(typeof userInput==='string') {
+    userName = userInput;
 }
 
-function printResult(num: number): void {
-    console.log('Result : '+num);
+function generateError(message: string, code: number) {
+    throw { message: message, errorCode: code };
 }
 
-console.log(printResult(add(5,12)));
+generateError('에러가 발생했습니다', 404);
