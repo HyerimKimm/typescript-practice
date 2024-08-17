@@ -9,4 +9,3 @@ const person   : {
   hobbies: ['Running', 'Fashion'],
   role: [2, 'author']
 };
-
