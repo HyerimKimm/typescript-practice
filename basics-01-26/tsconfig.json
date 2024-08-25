@@ -15,9 +15,17 @@
     "removeComments": true,
     // "noEmit": true,
     // "downlevelIteration": true,
+    "noEmitOnError": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitAny": false,
+    // "strictNullChecks": false,
+    // "strictFunctionTypes": true,
+    // "strictBindCallApply": true,
+    // "strictPropertyInitialization": true,
+    // "noImplicitThis": true,
+    // "alwaysStrict": true,
     "skipLibCheck": true
   },
   "exclude": ["node_modules"]
