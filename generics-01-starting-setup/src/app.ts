@@ -10,8 +10,35 @@
 //   data.split(" ");
 // });
 
-function merge(objA: object, objB: object) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
-console.log(merge({ name: "Max" }, { age: "20" }));
+const mergedObj = merge({ name: "Max" }, { age: 20 });
+console.log(mergedObj.name);
+
+interface Lengthy {
+  length : number;
+}
+ 
+function countAndDesc<T extends Lengthy>(element: T): [T, string] {
+  let descText = 'Got no value';
+
+  if(element.length>1) {
+    descText = 'Got '+element.length+'elements.';
+  }  else if(element.length===1) {
+    descText = 'Got 1 element.'
+    } else {
+      descText = 'Got no value.'
+    }
+
+  return [ element, descText ];
+}
+
+console.log(countAndDesc('Hi'));
+
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
+}
+
+extractAndConvert( {name: '혜림이'}, 'name');
