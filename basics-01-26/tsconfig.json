@@ -26,6 +26,10 @@
     // "strictPropertyInitialization": true,
     // "noImplicitThis": true,
     // "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true
   },
   "exclude": ["node_modules"]
