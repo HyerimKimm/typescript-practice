@@ -1,19 +1,24 @@
 class Department {
-    name: string;
+  //   private id: string;
+  //   private name: string;
+  private employees: string[] = [];
 
-    constructor(n: string) {
-        this.name = n;
-    }
+  constructor(private id: string, private name: string) {
+    // this.id = id;
+    // this.name = n;
+  }
 
-    describe () {
-        console.log('Department: '+ this.name);
-    }
+  describe() {
+    console.log(`Department (${this.id}) : ${this.name}`);
+  }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
 }
 
-const webTeam = new Department('Web Team');
+const webTeam = new Department("1", "Web Team");
 
-// webTeam.describe();
+webTeam.addEmployee("Hyerim");
 
-const accountingCopy = { describe: webTeam.describe };
-
-accountingCopy.describe();
+webTeam.describe();
