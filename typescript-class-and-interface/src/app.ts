@@ -76,6 +76,9 @@ const accounting = new AccountingDepartment("d2", []);
 accounting.addReport({ text: "Something went wrong..." });
 console.log(accounting.mostRecentReport);
 
+accounting.mostRecentReport = 'Something went wrong...';
+console.log(accounting.mostRecentReport);
+
 accounting.addEmployee('Max');
 accounting.addEmployee('Matu');
 
