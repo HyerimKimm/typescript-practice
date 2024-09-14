@@ -29,8 +29,25 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  get mostRecentReport() {
+    if(this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No report found.');
+  }
+
+  set mostRecentReport(value: string) {
+    if(!value) {
+      throw new Error('Please pass in a valid value!');
+    }
+    this.addReport({ text: value })
+  }
+
   constructor(id: string, private reports: string[]) {
     super(id, "Accounting");
+    this.lastReport = reports[0]; // 빈 배열이면 undefined가 들어감
   }
 
   addEmployee(name: string) {
@@ -38,8 +55,9 @@ class AccountingDepartment extends Department {
     this.employees.push(name);
   }
 
-  addRepart(text: string) {
+  addReport({ text }: { text: string; }) {
     this.reports.push(text);
+    this.lastReport = text;
   }
 
   printReports() {
@@ -55,7 +73,8 @@ console.log(it);
 
 const accounting = new AccountingDepartment("d2", []);
 
-accounting.addRepart("Something went wrong...");
+accounting.addReport({ text: "Something went wrong..." });
+console.log(accounting.mostRecentReport);
 
 accounting.addEmployee('Max');
 accounting.addEmployee('Matu');
