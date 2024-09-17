@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2024;
   //   private id: string;
   //   private name: string;
   protected employees: string[] = [];
@@ -6,6 +7,10 @@ class Department {
   constructor(private readonly id: string, private name: string) {
     // this.id = id;
     // this.name = n;
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -32,17 +37,17 @@ class AccountingDepartment extends Department {
   private lastReport: string;
 
   get mostRecentReport() {
-    if(this.lastReport) {
+    if (this.lastReport) {
       return this.lastReport;
     }
-    throw new Error('No report found.');
+    throw new Error("No report found.");
   }
 
   set mostRecentReport(value: string) {
-    if(!value) {
-      throw new Error('Please pass in a valid value!');
+    if (!value) {
+      throw new Error("Please pass in a valid value!");
     }
-    this.addReport({ text: value })
+    this.addReport({ text: value });
   }
 
   constructor(id: string, private reports: string[]) {
@@ -51,11 +56,13 @@ class AccountingDepartment extends Department {
   }
 
   addEmployee(name: string) {
-    if(name==='Max') { return; }
+    if (name === "Max") {
+      return;
+    }
     this.employees.push(name);
   }
 
-  addReport({ text }: { text: string; }) {
+  addReport({ text }: { text: string }) {
     this.reports.push(text);
     this.lastReport = text;
   }
@@ -71,16 +78,20 @@ it.addEmployee("Hyerim");
 
 console.log(it);
 
+const employee1 = Department.createEmployee("Max");
+console.log(employee1); // { name: 'Max' }
+
 const accounting = new AccountingDepartment("d2", []);
 
 accounting.addReport({ text: "Something went wrong..." });
 console.log(accounting.mostRecentReport);
+console.log(Department.fiscalYear);
 
-accounting.mostRecentReport = 'Something went wrong...';
+accounting.mostRecentReport = "Something went wrong...";
 console.log(accounting.mostRecentReport);
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Matu');
+accounting.addEmployee("Max");
+accounting.addEmployee("Matu");
 
 accounting.printEmployees();
 
