@@ -34,6 +34,7 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   get mostRecentReport() {
     if (this.lastReport) {
@@ -49,7 +50,16 @@ class AccountingDepartment extends Department {
     this.addReport({ text: value });
   }
 
-  constructor(id: string, private reports: string[]) {
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    } else {
+      this.instance = new AccountingDepartment("d1", []);
+      return this.instance;
+    }
+  }
+
+  private constructor(id: string, private reports: string[]) {
     super(id, "Accounting");
     this.lastReport = reports[0]; // 빈 배열이면 undefined가 들어감
   }
@@ -84,7 +94,7 @@ console.log(it);
 const employee1 = Department.createEmployee("Max");
 console.log(employee1); // { name: 'Max' }
 
-const accounting = new AccountingDepartment("d2", []);
+const accounting = AccountingDepartment.getInstance();
 
 accounting.addReport({ text: "Something went wrong..." });
 console.log(accounting.mostRecentReport);
